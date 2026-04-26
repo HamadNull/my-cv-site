@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حمد | مهندس أمن سيبراني</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        code, .en, .skill-tag, .cert-id, .typing-text {
+            font-family: 'Fira Code', monospace;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1, h2, h3 {
+            color: #00ff41;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { font-size: 2.5rem; }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #00ff41;
+            display: inline-block;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.3rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 0 4rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 15px rgba(0,255,65,0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+            min-height: 2em;
+        }
+
+        .hero .brand {
+            font-size: 1.2rem;
+            color: #00ff41;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #00ff41;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ff41;
+        }
+
+        .grid-2, .grid-3 {
+            display: grid;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        .card {
+            background: rgba(17,17,17,0.8);
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(5px);
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #00ff41;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0,255,65,0.1);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .skill-tag {
+            background: #181818;
+            border: 1px solid #333;
+            color: #ddd;
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            margin: 0.25rem;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: #00ff41;
+            color: #00ff41;
+        }
+
+        ul {
+            padding-right: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        .contact {
+            text-align: center;
+            margin: 3rem 0;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .contact a {
+            color: #00ff41;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .pgp-box {
+            background: #111;
+            border: 1px dashed #00ff41;
+            padding: 1rem;
+            margin: 1.5rem auto;
+            word-break: break-all;
+            direction: ltr;
+            text-align: left;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            max-width: 600px;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+
+        a { color: #00ff41; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.4em;
+            background: #00ff41;
+            margin-right: 4px;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container">
+
+        <!-- Hero Section -->
+        <div class="hero" data-aos="fade-down" data-aos-duration="800">
+            <h1>حمد</h1>
+            <div class="subtitle">
+                <span class="typing-text" id="typing-text"></span><span class="typing-cursor"></span>
+            </div>
+            <div class="brand">
+                <span class="en">h76md</span> — سايبري <span class="en">cyberi</span>
+            </div>
+            <p style="margin: 1rem 0;">السنة الثالثة | جامعة الشعب – العراق | 2024-2025</p>
+            <div class="social-links">
+                <a href="https://tryhackme.com/p/hamad007" target="_blank"><i class="fas fa-globe"></i> TryHackMe</a>
+                <a href="#" target="_blank"><i class="fas fa-globe"></i> HackTheBox</a>
+                <a href="#" target="_blank"><i class="fas fa-terminal"></i> picoCTF</a>
+            </div>
+        </div>
+
+        <!-- الشهادات والاعتمادات -->
+        <h2 data-aos="fade-right"><i class="fas fa-certificate"></i> الشهادات والاعتمادات</h2>
+        <div class="grid-2">
+            <div class="card" data-aos="zoom-in"><h3>CAPT – Certified Apprentice Penetration Tester</h3><p>Hackviser</p><p class="cert-id">ID: HV-CAPT-C34PL2ZH</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="100"><h3>AI Security Learning Path</h3><p>TryHackMe – تهديدات AI/ML، الهجمات، الدفاع</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="200"><h3>AWS Cloud Security – Module 4</h3><p>AWS / ISC2 – Shared Responsibility Model, IAM</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="300"><h3>Cisco NetAcad – Cybersecurity</h3><p>Cisco – شهادة أكاديمية</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="400"><h3>Huawei ICT Academy</h3><p>Huawei – مسار الأمن السيبراني</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="500"><h3>ISC2 CC – Candidate</h3><p>ISC2 – Certified in Cybersecurity</p></div>
+            <div class="card" data-aos="zoom-in" data-aos-delay="600"><h3>CyberTalents Challenges</h3><p>مسابقات CTF عربية</p></div>
+        </div>
+
+        <!-- الإنجازات الأكاديمية -->
+        <h2 data-aos="fade-right"><i class="fas fa-book-open"></i> الإنجازات الأكاديمية</h2>
+        <div class="grid-2">
+            <div class="card" data-aos="flip-left"><h3>MQTT Security Report</h3><p>تقرير أمني لمادة IoT Security مع فريق دراسي</p></div>
+            <div class="card" data-aos="flip-left" data-aos-delay="100"><h3>IDPS Presentation</h3><p>عرض عن أنظمة كشف ومنع الاختراق (Snort)</p></div>
+            <div class="card" data-aos="flip-left" data-aos-delay="200"><h3>Wireless / 5G Security</h3><p>دراسة أمن شبكات الجيل الخامس واللاسلكية</p></div>
+            <div class="card" data-aos="flip-left" data-aos-delay="300"><h3>Web Security Study</h3><p>JavaScript وأمن الويب وآليات الثقة</p></div>
+        </div>
+        <p data-aos="fade-up"><strong>مواد دراسية ناجحة:</strong> أمن الشبكات اللاسلكية والجيل الخامس، JavaScript وأمن تطبيقات الويب، أنظمة كشف الاختراق (IDPS/Snort)، أمن إنترنت الأشياء (IoT/MQTT)</p>
+
+        <!-- CTF -->
+        <h2 data-aos="fade-right"><i class="fas fa-flag"></i> منصات CTF والإنجازات التنافسية</h2>
+        <div class="grid-3">
+            <div class="card" data-aos="fade-up"><h3><span class="en">HackTheBox</span></h3><p>Arctic Howl Gauntlet – Log Forensics, Path Traversal, Web, Reversing, Forensics</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100"><h3><span class="en">TryHackMe</span></h3><p>AI Security Path كاملاً، Cryptography: RSA, HMAC-SHA1, AES-CBC</p></div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200"><h3><span class="en">picoCTF</span></h3><p>JWT 'none' Bypass, Base64 Cookie Extraction, ROT13 Header Injection</p></div>
+        </div>
+
+        <!-- المشاريع -->
+        <h2 data-aos="fade-right"><i class="fas fa-code"></i> المشاريع التقنية</h2>
+        <div class="grid-2">
+            <div class="card" data-aos="zoom-in-up"><h3>Kali Linux MCP Server</h3><p>دمج Claude Desktop مع أدوات Pentesting عبر HTTP/SSE، Docker، MCP</p></div>
+            <div class="card" data-aos="zoom-in-up" data-aos-delay="100"><h3>Telegram Media Downloader Bot</h3><p>بوت تحميل وسائط بـ Python، استضافة Oracle Cloud</p></div>
+            <div class="card" data-aos="zoom-in-up" data-aos-delay="200"><h3>Android APK Reverse Engineering</h3><p>بيئة كاملة على Kali: <span class="en">jadx, apktool, adb, frida</span>. تحدي AES/ECB</p></div>
+            <div class="card" data-aos="zoom-in-up" data-aos-delay="300"><h3>سايبري | cyberi – المنصة العربية</h3><p>براند تعليمي على إنستغرام (<span class="en">h76md</span>) يقدم محتوى عربي متخصص</p></div>
+        </div>
+
+        <!-- المهارات -->
+        <h2 data-aos="fade-right"><i class="fas fa-microchip"></i> المهارات التقنية</h2>
+        <div data-aos="fade-up">
+            <h3>أدوات الاختبار الهجومي</h3>
+            <p>
+                <span class="skill-tag">Burp Suite</span><span class="skill-tag">Nmap</span><span class="skill-tag">ffuf</span><span class="skill-tag">SQLMap</span>
+                <span class="skill-tag">Subfinder</span><span class="skill-tag">Metasploit</span><span class="skill-tag">jadx</span><span class="skill-tag">apktool</span>
+                <span class="skill-tag">adb</span><span class="skill-tag">frida</span><span class="skill-tag">hashcat</span><span class="skill-tag">wireshark</span><span class="skill-tag">netcat</span>
+            </p>
+        </div>
+        <div style="margin-top:1rem;" data-aos="fade-up" data-aos-delay="100">
+            <h3>أمن الويب</h3>
+            <p>
+                <span class="skill-tag">JWT Attacks</span><span class="skill-tag">SQL Injection</span><span class="skill-tag">WAF Bypass</span>
+                <span class="skill-tag">Cookie Manipulation</span><span class="skill-tag">Header Injection</span>
+            </p>
+        </div>
+        <div style="margin-top:1rem;" data-aos="fade-up" data-aos-delay="200">
+            <h3>التشفير والتحليل</h3>
+            <p>
+                <span class="skill-tag">RSA Weak-Prime Factoring</span><span class="skill-tag">AES-CBC Exploitation</span>
+                <span class="skill-tag">HMAC-SHA1 Cracking</span><span class="skill-tag">ROT13</span><span class="skill-tag">Base64</span>
+            </p>
+        </div>
+        <div style="margin-top:1rem;" data-aos="fade-up" data-aos-delay="300">
+            <h3>البيئة والأنظمة</h3>
+            <p>
+                <span class="skill-tag">EndeavourOS (Arch)</span><span class="skill-tag">GNOME</span><span class="skill-tag">Btrfs</span>
+                <span class="skill-tag">VMware + Kali</span><span class="skill-tag">Tilix</span><span class="skill-tag">VSCode</span>
+                <span class="skill-tag">Obsidian (MITRE ATT&CK)</span>
+            </p>
+        </div>
+        <div style="margin-top:1rem;" data-aos="fade-up" data-aos-delay="400">
+            <h3>البرمجة والأتمتة</h3>
+            <p>
+                <span class="skill-tag">Python</span><span class="skill-tag">Bash</span><span class="skill-tag">Docker</span><span class="skill-tag">MCP Architecture</span>
+            </p>
+        </div>
+
+        <!-- خارطة الطريق -->
+        <h2 data-aos="fade-right"><i class="fas fa-map-signs"></i> خارطة الطريق القادمة</h2>
+        <ul data-aos="fade-up">
+            <li><strong>كتب قيد الدراسة:</strong> Bug Bounty Bootcamp → Hacking APIs + Black Hat Python → The Hacker's Playbook 3</li>
+            <li><strong>مهارات مستهدفة:</strong> Privilege Escalation، Active Directory، Pentest Report Writing</li>
+            <li><strong>التوجه المستقبلي:</strong> AI Security Research و AI Red Teaming</li>
+            <li><strong>تطوير سايبري:</strong> منصة مرجعية عربية في الأمن السيبراني</li>
+        </ul>
+
+        <!-- اتصل بي -->
+        <div class="contact" data-aos="fade-up">
+            <h2><i class="fas fa-lock"></i> اتصل بي</h2>
+            <p>للاستفسار أو التعاون، يمكنك التواصل عبر البريد أو وسائل التواصل.</p>
+            <p><strong>البريد الإلكتروني:</strong> <a href="mailto:more43568@gmail.com" class="en">more43568@gmail.com</a></p>
+            <div style="margin-top:1rem;">
+                <a href="https://instagram.com/h76md" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://t.me/h76md" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
+            </div>
+            
+            <h3 style="margin-top:2rem;"><i class="fas fa-key"></i> مفتاح PGP العام</h3>
+            <p class="en">للرسائل المشفرة، استخدم مفتاحي العام أدناه:</p>
+            <div class="pgp-box">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEae1UghYJKwYBBAHaRw8BAQdA18HKoq6kz9SkJ60MS+DqXSw8Crbru9gbJcff
+cvHwgPq0IGhhbWFkIChoaSkgPG1vcmU0MzU2OEBnbWFpbC5jb20+iJAEExYKADgW
+IQQNCXK4hoQYdHDRluJlYN4vqmiBsgUCae1UggIbAwULCQgHAgYVCgkICwIEFgID
+AQIeAQIXgAAKCRBlYN4vqmiBsiMnAP42u/mkEGfVNolDwfaZ9l5ggLkQybn9r2GB
+r5VRUv0QkQD/TTBU8FTX6U2cs60PWk1Zu3jCMKf7KY/jbs9vt/qPcwo=
+=RLWL
+-----END PGP PUBLIC KEY BLOCK-----</div>
+        </div>
+
+        <footer>
+            <p>© 2025 حمد – سايبري | صُمم بواسطة <span class="en">cyberi</span></p>
+        </footer>
+    </div>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 80 });
+
+        // تأثير الكتابة الآلية
+        const typedElement = document.getElementById('typing-text');
+        const phrases = [
+            "Offensive Security",
+            "Bug Bounty Hunter",
+            "CTF Player",
+            "AI Red Teaming"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                charIndex--;
+                typedElement.textContent = currentPhrase.substring(0, charIndex);
+                typeSpeed = 50;
+            } else {
+                charIndex++;
+                typedElement.textContent = currentPhrase.substring(0, charIndex);
+                typeSpeed = 120;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 1500;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 300;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+        type();
+
+        // شبكة الجسيمات التفاعلية
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 80;
+        const maxDistance = 120;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radius = 2;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#00ff41';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        let mouse = { x: null, y: null };
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < maxDistance) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(0,255,65,${1 - dist/maxDistance})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            if (mouse.x && mouse.y) {
+                particles.forEach(p => {
+                    const dx = p.x - mouse.x;
+                    const dy = p.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(0,255,65,${0.6 - dist/150})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+    </script>
+</body>
+</html>
